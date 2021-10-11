@@ -77,3 +77,7 @@ if __name__ == "__main__" :
 
     for i in result:
         print("pokémon: ", i, "  quantité: ", result[i], "  pourcentage: ", "{:.2f}".format(result[i]/(sample/100)),"%", "  son taux de capture est de: ", )
+
+
+
+
