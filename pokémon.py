@@ -29,10 +29,11 @@ pokemons = [
     ["Larvitar", 4851, 4881, 0, 0, 64, 50], ["Pupitar", 4882, 4912, 0, 0, 84, 70], ["Tyranitar", 4913, 4933, 0, 0, 134, 110], ["Lugia", 4934, 4944, 0, 0, 90, 130], 
     ["Ho-Oh", 4945, 4955, 0, 0, 130, 90], ["Celebi", 4956, 4976, 0, 0, 100, 100], ["Latios", 4977, 5007, 0, 0, 90, 80], ["Latias", 5008, 5038, 0, 0, 80, 90]
 ]
-
+resistance = 0
 
 def spawn():
     total_range = 0
+    global resistance
 
     for i in range (0, len(pokemons)):
         total_range += pokemons[i][2] - pokemons[i][1]
@@ -44,8 +45,35 @@ def spawn():
         if random_pokemon >= pokemons[i][1] and random_pokemon <= pokemons[i][2]:
             pokemon_spawn = pokemons[i][0]
             pokemon_spawn_stats = pokemons[i]
-            print(pokemon_spawn)
-            pokemons[i][4] += 1
-            print(pokemons[i][4])
+            print(pokemon_spawn, end=" ")
+            resistance = random.randint(0,50)
+            print (resistance,"%")
 
-spawn()
+def catch():
+    print("\n","1:pokeball || 2:superball || 3:hyperball || 4:masterball", "\n")
+    ball = input()
+    print("\n")
+    if ball=="1":
+        if random.randint(0,100) > 30*(resistance/100) :
+            print("pokemon catch !")
+        else:
+            print("fail")
+    elif ball=="2":
+        if random.randint(0,100) > 50*(resistance/100) :
+            print("pokemon catch !")
+        else:
+            print("fail")
+    elif ball=="3":
+        if random.randint(0,100) > 70*(resistance/100) :
+            print("pokemon catch !")
+        else:
+            print("fail")
+    elif ball=="4":
+        print("pokemon catch !")
+    else:
+        catch()
+
+
+
+
+spawn(),catch()
