@@ -24,63 +24,9 @@
 #       -> inventaire objets
 #       -> inventaire pokemon
 
-import random, string, time, pypokedex
+import random
 
-class Pokemon():
-    max = 0
-
-    def __init__(self, id):
-        self.timeStart = time.time_ns()           
-        self.pokemon = pypokedex.get(dex = id)
-        self.spawnrate = random.randint(0,100)
-        self.startSpawn = self.__class__.max
-        self.__class__.max += self.spawnrate
-        self.endSpawn = self.__class__.max
-        self.catchrate = random.randint(0,50)
-
-    def __repr__(self):
-        return self.pokemon.name
-    
-
-if __name__ == "__main__" :
-    sum = 0
-    sample = 1000
-    pokedex = 30
-    test = {}
-    result = {}
-    catch = {}
-    for i in range (1, pokedex):
-        j = i
-        test[i] = Pokemon(i)
-        print(test[i].pokemon.name)
-        sum += test[i].spawnrate
-        result[test[i].pokemon.name] = 0
-        test[j] = Pokemon(j)
-        sum += test[j].spawnrate
-        result[test[j].pokemon.name] = 0
-    
-    for i in test:
-        print("le pokémon : ", test[i].pokemon.name, "  a une chance de spawn de : ", "{:.2f}".format(test[i].spawnrate/(test[i].max/100)), "%")
-
-    for j in catch:
-        print("le pokémon : ", test[j].pokemon.name, "  a une chance de capture de : ", "{:.2f}".format(test[j].catchrate/(test[i].max/100)), "%")
-
-    for i in range(sample):
-        spawn = random.randint(1, test[1].max)
-        for i in test:
-            if spawn >= test[i].startSpawn and spawn < test[i].endSpawn:
-                result[test[i].pokemon.name] += 1
-                break
-    
-    #for i in catch:
-
-
-    for i in result:
-        print("pokémon: ", i, "  quantité: ", result[i], "  pourcentage: ", "{:.2f}".format(result[i]/(sample/100)),"%", "  son taux de capture est de: ", )
-
-
-
-
+# ["Name", minSpawn, maxSpawn, %Spawn, nbSpawn, attack, defense]
 pokemons = [
     ["Bulbasaur", 0, 60, 0, 0, 49, 49], ["Charmander", 61, 121, 0, 0, 52, 43], ["Squirtle", 122, 182, 0, 0, 48, 65], ["Caterpie", 183, 263, 0, 0, 30, 35], 
     ["Weedle", 264, 344, 0, 0, 35, 30], ["Pidgey", 345, 425, 0, 0, 45, 40], ["Rattata", 426, 506, 0, 0, 56, 35], ["Spearow", 507, 587, 0, 0, 60, 30], 
@@ -108,3 +54,23 @@ pokemons = [
     ["Larvitar", 4851, 4881, 0, 0, 64, 50], ["Pupitar", 4882, 4912, 0, 0, 84, 70], ["Tyranitar", 4913, 4933, 0, 0, 134, 110], ["Lugia", 4934, 4944, 0, 0, 90, 130], 
     ["Ho-Oh", 4945, 4955, 0, 0, 130, 90], ["Celebi", 4956, 4976, 0, 0, 100, 100], ["Latios", 4977, 5007, 0, 0, 90, 80], ["Latias", 5008, 5038, 0, 0, 80, 90]
 ]
+
+
+def spawn():
+    total_range = 0
+
+    for i in range (0, len(pokemons)):
+        total_range += pokemons[i][2] - pokemons[i][1]
+    # print(total_range)    # 4940
+    random_pokemon = (random.randint(0, total_range))
+    # print(random_pokemon)
+
+    for i in range (0, len(pokemons)-1):
+        if random_pokemon >= pokemons[i][1] and random_pokemon <= pokemons[i][2]:
+            pokemon_spawn = pokemons[i][0]
+            pokemon_spawn_stats = pokemons[i]
+            print(pokemon_spawn)
+            pokemons[i][4] += 1
+            print(pokemons[i][4])
+
+spawn()
