@@ -54,17 +54,17 @@ def catch():
     ball = input()
     print("\n")
     if ball=="1":
-        if random.randint(0,100) > 30*(resistance/100) :
+        if random.randint(0,100) > 30/(resistance*100) :
             print("pokemon catch !")
         else:
             print("fail")
     elif ball=="2":
-        if random.randint(0,100) > 50*(resistance/100) :
+        if random.randint(0,100) > 50/(resistance*100) :
             print("pokemon catch !")
         else:
             print("fail")
     elif ball=="3":
-        if random.randint(0,100) > 70*(resistance/100) :
+        if random.randint(0,100) > 70/(resistance*100) :
             print("pokemon catch !")
         else:
             print("fail")
