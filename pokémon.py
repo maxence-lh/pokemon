@@ -48,25 +48,27 @@ if __name__ == "__main__" :
     pokedex = 30
     test = {}
     result = {}
+    catch = {}
     for i in range (1, pokedex):
+        j = i
         test[i] = Pokemon(i)
         print(test[i].pokemon.name)
         sum += test[i].spawnrate
         result[test[i].pokemon.name] = 0
-
-    for i in range(1,pokedex):
-        test[i] = Pokemon(i)
-        sum += test[i].catchrate
-        result[test[i].pokemon.name] = 0
+        test[j] = Pokemon(j)
+        sum += test[j].spawnrate
+        result[test[j].pokemon.name] = 0
     
     for i in test:
         print("le pokémon : ", test[i].pokemon.name, "  a une chance de spawn de : ", "{:.2f}".format(test[i].spawnrate/(test[i].max/100)), "%")
+
+    for j in catch:
+        print("le pokémon : ", test[j].pokemon.name, "  a une chance de capture de : ", "{:.2f}".format(test[j].catchrate/(test[i].max/100)), "%")
 
     for i in range(sample):
         spawn = random.randint(1, test[1].max)
         for i in test:
             if spawn >= test[i].startSpawn and spawn < test[i].endSpawn:
-                #print("le pokemon est spawn: ", test[i].pokemon.name, "   et son taux de spawn est:  ", test[i].spawnrate, "%")
                 result[test[i].pokemon.name] += 1
                 break
     
