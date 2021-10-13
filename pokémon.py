@@ -88,7 +88,7 @@ def catch():
         if inventoryball[1] > 0:
             if random.randint(0,100) <= (30/100)/(resistance/100) :
                 print("pokemon catch !")
-                inventorypoke.append(pokemon_spawn)
+                inventorypoke.append(pokemon_spawn_stats)
                 inventoryball[1] = inventoryball[1]-1
             else:
                 inventoryball[1] = inventoryball[1]-1
@@ -100,7 +100,7 @@ def catch():
         if inventoryball[3] > 0:
             if random.randint(0,100) <= (50/100)/(resistance/100) :
                 print("pokemon catch !")
-                inventorypoke.append(pokemon_spawn)
+                inventorypoke.append(pokemon_spawn_stats)
                 inventoryball[3] = inventoryball[3]-1
             else:
                 inventoryball[3] = inventoryball[3]-1
@@ -112,7 +112,7 @@ def catch():
         if inventoryball[5] > 0:
             if random.randint(0,100) <= (70/100)/(resistance/100) :
                 print("pokemon catch !")
-                inventorypoke.append(pokemon_spawn)
+                inventorypoke.append(pokemon_spawn_stats)
                 inventoryball[5] = inventoryball[5]-1
             else:
                 inventoryball[5] = inventoryball[5]-1
@@ -123,7 +123,7 @@ def catch():
     elif ball=="4":
         if inventoryball[7] > 0:
             print("pokemon catch !")
-            inventorypoke.append(pokemon_spawn)
+            inventorypoke.append(pokemon_spawn_stats)
             inventoryball[7] = inventoryball[7]-1
         else:
             print("not enought balls")
@@ -132,18 +132,26 @@ def catch():
         catch()
 
 def inventory():
-    print(inventorypoke)
+    for i in range (0, len(inventorypoke)):
+        print(inventorypoke[i][0])
     print("\n",inventoryball[0],":",inventoryball[1],"\n",inventoryball[2],":",inventoryball[3],"\n",inventoryball[4],":",inventoryball[5],"\n",inventoryball[6],":",inventoryball[7],"\n")
     print(inventorydoll, "pokedollars")
     menu()
 
 def attack():
     global pokemon_spawn_stats
-    print(inventorypoke)
+    for i in range (0, len(inventorypoke)):
+        print(inventorypoke[i][0],end=" ")
     print("select your pokemon")
-    pokemon1 = input()
-    print(pokemon1)
-    print(pokemon_spawn[5])
+    pokemon1 = int(input())
+    ratio1 = inventorypoke[pokemon1-1][5]/inventorypoke[pokemon1-1][6]
+    ratio2 = pokemon_spawn_stats[5]/pokemon_spawn_stats[6]
+    ratio = ratio1 + ratio2
+    rand_ratio = random.randint(0, ratio)
+    if rand_ratio < ratio1:
+        print(inventorypoke[1], "wins")
+    else:
+        print(pokemon_spawn_stats[1], "wins")
 
 def shop():
     global inventorydoll
