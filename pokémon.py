@@ -142,6 +142,8 @@ def attack():
     print(inventorypoke)
     print("select your pokemon")
     pokemon1 = input()
+    print(pokemon1)
+    print(pokemon_spawn[5])
 
 def shop():
     global inventorydoll
