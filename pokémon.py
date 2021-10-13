@@ -1,4 +1,3 @@
-
 import random
 
 # ["Name", minSpawn, maxSpawn, %Spawn, nbSpawn, attack, defense]
@@ -33,7 +32,7 @@ resistance = 0
 inventorypoke = []
 inventoryball = ["pokeball",random.randint(0,30),"superball",random.randint(0,30),"hyperball",random.randint(0,30),"masterball",random.randint(0,30)]
 inventorydoll = 0
-print("wanna play ?","\n","0: no || else: yes")
+print("wanna play ?","\n","0: no || 1: yes")
 play = input()
 
 def game():
@@ -62,7 +61,7 @@ def spawn():
 
 def menu():
     global play
-    print("\n"," 0:exit || 1:catching || 2:attack || 3:run || 4:inventory","\n")
+    print("\n"," 0:exit || 1:catching || 2:attack || 3:run || 4:inventory || 5:shop","\n")
     menu = input()
     if menu == "0":
         play="0"
@@ -75,6 +74,8 @@ def menu():
         print("you were too scared, you ran away")
     elif menu=="4":
         inventory()
+    elif menu=="5":
+        shop()
     else: menu()
 
 def catch():
@@ -85,7 +86,7 @@ def catch():
     print("\n")
     if ball=="1":
         if inventoryball[1] > 0:
-            if random.randint(0,100) > (30/100)/(resistance*100) :
+            if random.randint(0,100) <= (30/100)/(resistance/100) :
                 print("pokemon catch !")
                 inventorypoke.append(pokemon_spawn)
                 inventoryball[1] = inventoryball[1]-1
@@ -97,7 +98,7 @@ def catch():
             catch()
     elif ball=="2":
         if inventoryball[3] > 0:
-            if random.randint(0,100) > (50/100)/(resistance*100) :
+            if random.randint(0,100) <= (50/100)/(resistance/100) :
                 print("pokemon catch !")
                 inventorypoke.append(pokemon_spawn)
                 inventoryball[3] = inventoryball[3]-1
@@ -109,7 +110,7 @@ def catch():
             catch()
     elif ball=="3":
         if inventoryball[5] > 0:
-            if random.randint(0,100) > (70/100)/(resistance*100) :
+            if random.randint(0,100) <= (70/100)/(resistance/100) :
                 print("pokemon catch !")
                 inventorypoke.append(pokemon_spawn)
                 inventoryball[5] = inventoryball[5]-1
@@ -141,5 +142,34 @@ def attack():
     print(inventorypoke)
     print("select your pokemon")
     pokemon1 = input()
+
+def shop():
+    global inventorydoll
+    print("1:buy || 2:return to menu")
+    action = input()
+    if action == "1":
+        print("1:pokeball 200 || 2:superball 600 || 3:hyperball 1200 || 4:masterball 50000")
+        choice = input()
+        print("how many ?")
+        quantity = int(input())
+        if choice == "1":
+            if inventorydoll - (200*quantity) > 0:
+                inventorydoll -= (200*quantity)
+        elif choice == "2":
+            if inventorydoll - (600*quantity) > 0:
+                inventorydoll -= (600*quantity)
+        elif choice == "3":
+            if inventorydoll - (1200*quantity) > 0:
+                inventorydoll -= (1200*quantity)
+        elif choice == "4":
+            if inventorydoll - (50000*quantity) > 0:
+                inventorydoll -= (50000*quantity)
+        else:
+            shop()
+    else:
+        menu()
+    print(inventorydoll)
+
+
 
 game()
