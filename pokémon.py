@@ -32,7 +32,7 @@ pokemons = [
 resistance = 0
 inventorypoke = []
 inventoryball = ["pokeball",random.randint(0,30),"superball",random.randint(0,30),"hyperball",random.randint(0,30),"masterball",random.randint(0,30)]
-inventorydoll = []
+inventorydoll = 0
 print("wanna play ?","\n","0: no || else: yes")
 play = input()
 
@@ -47,16 +47,15 @@ def spawn():
     total_range = 0
     global resistance
     global pokemon_spawn
-
+    global pokemon_spawn_stats
     for i in range (0, len(pokemons)):
         total_range += pokemons[i][2] - pokemons[i][1]
     random_pokemon = (random.randint(0, total_range))
-
     for i in range (0, len(pokemons)-1):
         if random_pokemon >= pokemons[i][1] and random_pokemon <= pokemons[i][2]:
             pokemon_spawn = pokemons[i][0]
             pokemon_spawn_stats = pokemons[i]
-            print(pokemon_spawn, end=" ")
+            print("\n",pokemon_spawn, end=" ")
             resistance = random.randint(0,50)
             print (resistance,"%")
     menu()
@@ -70,7 +69,8 @@ def menu():
         game()
     elif menu=="1":
         catch()
-    #elif menu=="2":
+    elif menu=="2":
+        attack()
     elif menu=="3":
         print("you were too scared, you ran away")
     elif menu=="4":
@@ -130,11 +130,16 @@ def catch():
     else:
         catch()
 
-
 def inventory():
-    print (inventorypoke)
-    print ("\n",inventoryball[0],":",inventoryball[1],"\n",inventoryball[2],":",inventoryball[3],"\n",inventoryball[4],":",inventoryball[5],"\n",inventoryball[6],":",inventoryball[7],"\n")
+    print(inventorypoke)
+    print("\n",inventoryball[0],":",inventoryball[1],"\n",inventoryball[2],":",inventoryball[3],"\n",inventoryball[4],":",inventoryball[5],"\n",inventoryball[6],":",inventoryball[7],"\n")
+    print(inventorydoll, "pokedollars")
     menu()
 
+def attack():
+    global pokemon_spawn_stats
+    print(inventorypoke)
+    print("select your pokemon")
+    pokemon1 = input()
 
 game()
