@@ -49,22 +49,35 @@ def spawn():
             resistance = random.randint(0,50)
             print (resistance,"%")
 
+def menu():
+    print("\n","1:catching || 2:attack || 3:run || 4:inventory","\n")
+    menu = input()
+    if menu=="1":
+        catch()
+    #elif menu=="2":
+    elif menu=="3":
+        print("you were too scared, you ran away")
+    elif menu=="4":
+        inventory()
+    else: menu()
+
 def catch():
+    ball = 0
     print("\n","1:pokeball || 2:superball || 3:hyperball || 4:masterball", "\n")
     ball = input()
     print("\n")
     if ball=="1":
-        if random.randint(0,100) > 30/(resistance*100) :
+        if random.randint(0,100) > (30/100)/(resistance*100) :
             print("pokemon catch !")
         else:
             print("fail")
     elif ball=="2":
-        if random.randint(0,100) > 50/(resistance*100) :
+        if random.randint(0,100) > (50/100)/(resistance*100) :
             print("pokemon catch !")
         else:
             print("fail")
     elif ball=="3":
-        if random.randint(0,100) > 70/(resistance*100) :
+        if random.randint(0,100) > (70/100)/(resistance*100) :
             print("pokemon catch !")
         else:
             print("fail")
@@ -73,7 +86,15 @@ def catch():
     else:
         catch()
 
+def inventory():
+    inventorypoke = []
+    inventoryball = []
+    inventorydoll = []
+    if catch() == "pokemon catch !":
+        inventorypoke.append(pokemons)
 
 
 
-spawn(),catch()
+
+
+spawn(),menu()
