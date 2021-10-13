@@ -35,12 +35,12 @@ inventoryball = ["pokeball",random.randint(0,30),"superball",random.randint(0,30
 inventorydoll = []
 
 def game():
-    print("wanna play ?","\n")
+    print("wanna play ?","\n","0: no || else: yes")
     game = input()
     while game != "0":
         spawn()
         print("play again ?")
-        game = input()
+        game = input("\n")
     else:
         game = "0"
 
@@ -63,9 +63,11 @@ def spawn():
     menu()
 
 def menu():
-    print("\n","1:catching || 2:attack || 3:run || 4:inventory","\n")
+    print("\n"," 0:exit || 1:catching || 2:attack || 3:run || 4:inventory","\n")
     menu = input()
-    if menu=="1":
+    if menu == "0":
+        game = "0"
+    elif menu=="1":
         catch()
     #elif menu=="2":
     elif menu=="3":
@@ -81,39 +83,46 @@ def catch():
     ball = input()
     print("\n")
     if ball=="1":
-        if inventoryball[2] > 0:
+        if inventoryball[1] > 0:
             if random.randint(0,100) > (30/100)/(resistance*100) :
                 print("pokemon catch !")
                 inventorypoke.append(pokemon_spawn)
+                inventoryball[1] = inventoryball[1]-1
             else:
+                inventoryball[1] = inventoryball[1]-1
                 print("fail")
         else:
             print("not enought balls")
             catch()
     elif ball=="2":
-        if inventoryball[4] > 0:
+        if inventoryball[3] > 0:
             if random.randint(0,100) > (50/100)/(resistance*100) :
                 print("pokemon catch !")
                 inventorypoke.append(pokemon_spawn)
+                inventoryball[3] = inventoryball[3]-1
             else:
+                inventoryball[3] = inventoryball[3]-1
                 print("fail")
         else:
             print("not enought balls")
             catch()
     elif ball=="3":
-        if inventoryball[6] > 0:
+        if inventoryball[5] > 0:
             if random.randint(0,100) > (70/100)/(resistance*100) :
                 print("pokemon catch !")
                 inventorypoke.append(pokemon_spawn)
+                inventoryball[5] = inventoryball[5]-1
             else:
+                inventoryball[5] = inventoryball[5]-1
                 print("fail")
         else:
             print("not enought balls")
             catch()
     elif ball=="4":
-        if inventoryball[8] > 0:
+        if inventoryball[7] > 0:
             print("pokemon catch !")
             inventorypoke.append(pokemon_spawn)
+            inventoryball[7] = inventoryball[7]-1
         else:
             print("not enought balls")
             catch()
@@ -123,8 +132,8 @@ def catch():
 
 def inventory():
     print (inventorypoke)
-    print (inventoryball)
-
+    print ("\n",inventoryball[0],":",inventoryball[1],"\n",inventoryball[2],":",inventoryball[3],"\n",inventoryball[4],":",inventoryball[5],"\n",inventoryball[6],":",inventoryball[7],"\n")
+    menu()
 
 
 game()
