@@ -81,26 +81,42 @@ def catch():
     ball = input()
     print("\n")
     if ball=="1":
-        if random.randint(0,100) > (30/100)/(resistance*100) :
-            print("pokemon catch !")
-            inventorypoke.append(pokemon_spawn)
+        if inventoryball[2] > 0:
+            if random.randint(0,100) > (30/100)/(resistance*100) :
+                print("pokemon catch !")
+                inventorypoke.append(pokemon_spawn)
+            else:
+                print("fail")
         else:
-            print("fail")
+            print("not enought balls")
+            catch()
     elif ball=="2":
-        if random.randint(0,100) > (50/100)/(resistance*100) :
-            print("pokemon catch !")
-            inventorypoke.append(pokemon_spawn)
+        if inventoryball[4] > 0:
+            if random.randint(0,100) > (50/100)/(resistance*100) :
+                print("pokemon catch !")
+                inventorypoke.append(pokemon_spawn)
+            else:
+                print("fail")
         else:
-            print("fail")
+            print("not enought balls")
+            catch()
     elif ball=="3":
-        if random.randint(0,100) > (70/100)/(resistance*100) :
+        if inventoryball[6] > 0:
+            if random.randint(0,100) > (70/100)/(resistance*100) :
+                print("pokemon catch !")
+                inventorypoke.append(pokemon_spawn)
+            else:
+                print("fail")
+        else:
+            print("not enought balls")
+            catch()
+    elif ball=="4":
+        if inventoryball[8] > 0:
             print("pokemon catch !")
             inventorypoke.append(pokemon_spawn)
         else:
-            print("fail")
-    elif ball=="4":
-        print("pokemon catch !")
-        inventorypoke.append(pokemon_spawn)
+            print("not enought balls")
+            catch()
     else:
         catch()
 
