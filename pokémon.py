@@ -33,16 +33,15 @@ resistance = 0
 inventorypoke = []
 inventoryball = ["pokeball",random.randint(0,30),"superball",random.randint(0,30),"hyperball",random.randint(0,30),"masterball",random.randint(0,30)]
 inventorydoll = []
+print("wanna play ?","\n","0: no || else: yes")
+play = input()
 
 def game():
-    print("wanna play ?","\n","0: no || else: yes")
-    game = input()
-    while game != "0":
+    global play
+    while play != "0":
         spawn()
-        print("play again ?")
-        game = input("\n")
     else:
-        game = "0"
+        play = "0"
 
 def spawn():
     total_range = 0
@@ -63,10 +62,12 @@ def spawn():
     menu()
 
 def menu():
+    global play
     print("\n"," 0:exit || 1:catching || 2:attack || 3:run || 4:inventory","\n")
     menu = input()
     if menu == "0":
-        game = "0"
+        play="0"
+        game()
     elif menu=="1":
         catch()
     #elif menu=="2":
