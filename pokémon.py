@@ -131,13 +131,6 @@ def catch():
     else:
         catch()
 
-def inventory():
-    for i in range (0, len(inventorypoke)):
-        print(inventorypoke[i][0])
-    print("\n",inventoryball[0],":",inventoryball[1],"\n",inventoryball[2],":",inventoryball[3],"\n",inventoryball[4],":",inventoryball[5],"\n",inventoryball[6],":",inventoryball[7],"\n")
-    print(inventorydoll, "pokedollars")
-    menu()
-
 def attack():
     global pokemon_spawn_stats
     global inventorydoll
@@ -152,9 +145,16 @@ def attack():
     if rand_ratio < ratio1:
         earnmoney = random.randint(1,2000)
         inventorydoll += earnmoney
-        print("\n",inventorypoke[pokemon1-1], "wins and you earn ",earnmoney,"pokedollars")
+        print("\n",inventorypoke[pokemon1-1][0], "wins and you earn ",earnmoney,"pokedollars")
     else:
         print(pokemon_spawn_stats[0], "wins")
+
+def inventory():
+    for i in range (0, len(inventorypoke)):
+        print(inventorypoke[i][0])
+    print("\n",inventoryball[0],":",inventoryball[1],"\n",inventoryball[2],":",inventoryball[3],"\n",inventoryball[4],":",inventoryball[5],"\n",inventoryball[6],":",inventoryball[7],"\n")
+    print(inventorydoll, "pokedollars")
+    menu()
 
 def shop():
     global inventorydoll
@@ -182,7 +182,5 @@ def shop():
     else:
         menu()
     print(inventorydoll)
-
-
 
 game()
