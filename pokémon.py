@@ -32,15 +32,7 @@ resistance = 0
 inventorypoke = []
 inventoryball = ["pokeball",random.randint(0,30),"superball",random.randint(0,30),"hyperball",random.randint(0,30),"masterball",random.randint(0,30)]
 inventorydoll = 0
-print("wanna play ?","\n","0: no || 1: yes")
-play = input()
-
-def game():
-    global play
-    while play != "0":
-        spawn()
-    else:
-        play = "0"
+play = 1
 
 def spawn():
     total_range = 0
@@ -58,6 +50,13 @@ def spawn():
             resistance = random.randint(0,50)
             print (resistance,"%")
     menu()
+
+def game():
+    global play
+    while play != "0":
+        spawn()
+    else:
+        play = "0"
 
 def menu():
     global play
@@ -158,6 +157,7 @@ def inventory():
 
 def shop():
     global inventorydoll
+    global inventoryball
     print("1:buy || 2:return to menu")
     action = input()
     if action == "1":
@@ -168,19 +168,23 @@ def shop():
         if choice == "1":
             if inventorydoll - (200*quantity) > 0:
                 inventorydoll -= (200*quantity)
+                inventoryball[1] += quantity
         elif choice == "2":
             if inventorydoll - (600*quantity) > 0:
                 inventorydoll -= (600*quantity)
+                inventoryball[3] += quantity
         elif choice == "3":
             if inventorydoll - (1200*quantity) > 0:
                 inventorydoll -= (1200*quantity)
+                inventoryball[5] += quantity
         elif choice == "4":
             if inventorydoll - (50000*quantity) > 0:
                 inventorydoll -= (50000*quantity)
+                inventoryball[7] += quantity
         else:
             shop()
     else:
         menu()
-    print(inventorydoll)
+    print(inventorydoll," pokedollars left")
 
 game()
