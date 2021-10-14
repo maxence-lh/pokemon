@@ -1,4 +1,10 @@
-import random
+import random,os
+
+def clearConsole():
+    command = 'clear'
+    if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
+        command = 'cls'
+    os.system(command)
 
 # ["Name", minSpawn, maxSpawn, %Spawn, nbSpawn, attack, defense]
 pokemons = [
@@ -34,6 +40,8 @@ inventoryball = ["pokeball",random.randint(0,30),"superball",random.randint(0,30
 inventorydoll = 0
 play = 1
 
+clearConsole()
+
 def spawn():
     total_range = 0
     global resistance
@@ -46,9 +54,8 @@ def spawn():
         if random_pokemon >= pokemons[i][1] and random_pokemon <= pokemons[i][2]:
             pokemon_spawn = pokemons[i][0]
             pokemon_spawn_stats = pokemons[i]
-            print("\n",pokemon_spawn, end=" ")
+            print("\n","wild",pokemon_spawn,"spawned", end=" ")
             resistance = random.randint(0,50)
-            print (resistance,"%")
     menu()
 
 def game():
@@ -131,6 +138,7 @@ def catch():
         catch()
 
 def attack():
+    clearConsole()
     global pokemon_spawn_stats
     global inventorydoll
     for i in range (0, len(inventorypoke)):
@@ -149,6 +157,7 @@ def attack():
         print(pokemon_spawn_stats[0], "wins")
 
 def inventory():
+    clearConsole()
     for i in range (0, len(inventorypoke)):
         print(inventorypoke[i][0])
     print("\n",inventoryball[0],":",inventoryball[1],"\n",inventoryball[2],":",inventoryball[3],"\n",inventoryball[4],":",inventoryball[5],"\n",inventoryball[6],":",inventoryball[7],"\n")
@@ -158,6 +167,7 @@ def inventory():
 def shop():
     global inventorydoll
     global inventoryball
+    clearConsole()
     print("1:buy || 2:return to menu")
     action = input()
     if action == "1":
