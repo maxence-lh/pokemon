@@ -37,7 +37,7 @@ pokemons = [
 resistance = 0
 inventorypoke = []
 inventoryball = ["pokeball",random.randint(0,30),"superball",random.randint(0,30),"hyperball",random.randint(0,30),"masterball",random.randint(0,30)]
-inventorydoll = 0
+inventorydoll = 50000
 play = 1
 
 clearConsole()
