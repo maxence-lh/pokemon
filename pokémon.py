@@ -42,6 +42,13 @@ play = 1
 
 clearConsole()
 
+def game():
+    global play
+    while play != "0":
+        spawn()
+    else:
+        play = "0"
+
 def spawn():
     total_range = 0
     global resistance
@@ -57,13 +64,6 @@ def spawn():
             print("\n","wild",pokemon_spawn,"spawned", end=" ")
             resistance = random.randint(0,50)
     menu()
-
-def game():
-    global play
-    while play != "0":
-        spawn()
-    else:
-        play = "0"
 
 def menu():
     global play
