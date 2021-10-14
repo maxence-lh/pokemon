@@ -140,18 +140,21 @@ def inventory():
 
 def attack():
     global pokemon_spawn_stats
+    global inventorydoll
     for i in range (0, len(inventorypoke)):
-        print(inventorypoke[i][0],end=" ")
+        print(inventorypoke[i][0],"/",end=" ")
     print("select your pokemon")
     pokemon1 = int(input())
     ratio1 = inventorypoke[pokemon1-1][5]/inventorypoke[pokemon1-1][6]
     ratio2 = pokemon_spawn_stats[5]/pokemon_spawn_stats[6]
     ratio = ratio1 + ratio2
-    rand_ratio = random.randint(0, ratio)
+    rand_ratio = random.uniform(0, ratio)
     if rand_ratio < ratio1:
-        print(inventorypoke[1], "wins")
+        earnmoney = random.randint(1,2000)
+        inventorydoll += earnmoney
+        print("\n",inventorypoke[pokemon1-1], "wins and you earn ",earnmoney,"pokedollars")
     else:
-        print(pokemon_spawn_stats[1], "wins")
+        print(pokemon_spawn_stats[0], "wins")
 
 def shop():
     global inventorydoll
